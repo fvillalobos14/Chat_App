@@ -1,0 +1,74 @@
+<style>
+  .style_image {
+    margin: 100px;
+    
+  } 
+  .style-col {
+    border-right: 1px solid #d3d5d4;
+    padding-bottom: 20px;
+  } 
+  .style-column {
+    padding-left: 200px;
+    padding-right: 200px;
+  } 
+
+  .btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+    background-color: #bd8b9c !important;
+    border-color: #bd8b9c !important;
+  }
+
+</style>
+
+<div class="row">
+    <br>
+  <div class="col-md-5 style-col ">
+    
+    <br>
+    <br>
+    <center><%= image_tag("logo.png", :alt => "CONVO logo", :class => "style_image")  %></center>
+    <br>
+    <br>
+    
+    
+  </div>
+  <div class="col-md-7 style-column ">
+    
+    <h2 class="text-center">Sign Up</h2><hr>
+    
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+    
+      <div class="field">
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+      
+      <div class="field">
+          <p><%= f.select(:usr_type, options_for_select(["User","Trainer"],"User")) %></p>
+      </div>
+
+      <div class="field">
+        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+      </div>
+    
+      <div class="field">
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control"  %>
+      </div>
+    
+      <div class="field">
+       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+      </div>
+    
+      <div class="actions text-center">
+        <p><%= f.submit "Sign up", class: "btn btn-success" %></p>
+      </div>
+    <% end %>
+    
+    <div class="text-center">
+      <%= render "devise/shared/links" %>
+    </div>
+    <br>
+  </div>
+</div>

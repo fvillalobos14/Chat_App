@@ -1,0 +1,62 @@
+<style>
+  .panel > .panel-body{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+
+  .panel > .panel-heading{
+    color: #5e7d8f !important;
+    background-color: #f8f8f8 !important;
+  }
+
+  .btn-primary{
+    background-color: #8da9b9 !important;
+    border-color: #8da9b9 !important;
+    width: 130px;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3>Messages with
+      <% if @chat.sender_id == current_user.id%>
+              <%= User.find(@chat.recipient_id).name%>
+      <%end%>
+      <% if @chat.recipient_id == current_user.id%>
+              <%= User.find(@chat.sender_id).name%>
+      <%end%>
+      
+    </h3>
+    <p>
+      Started <%= time_ago_in_words(@chat.created_at) %> ago.
+    </p>
+    <hr>
+    <div id="" style="overflow:scroll; height:320px; overflow-x: hidden">
+      <% @chat.messages.each do |message| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= User.find(message.user_id).name%></h3>
+          </div>
+          <div class="panel-body">
+            <%= message.text %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <hr>  
+      <!-- <h4>Send a Message</h4> -->
+      <%= form_with(model: [ @chat, @chat.messages.build ], local: true) do |form| %>
+
+          <%= form.hidden_field :user_id, :value => current_user.id %>
+          <div class="form-group">
+            <%= form.text_area :text,id: "new_message", placeholder: "Begin typing your message here", class: "form-control" %>
+          </div>
+          <div style="display: inline-block; text-align: right; width: 100%">
+            <div class="actions">							
+              <%= form.submit "Send Message", class: "btn btn-primary" %>
+            </div>
+          </div>
+					
+      <% end %>
+  </div>
+</div>

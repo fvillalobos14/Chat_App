@@ -1,0 +1,50 @@
+<style>
+  .style_image {
+    margin: 80px;
+    
+  } 
+  .style-col {
+    border-right: 1px solid #d3d5d4;
+    padding-bottom: 20px;
+  } 
+  .style-column {
+    padding-left: 200px;
+    padding-right: 200px;
+  } 
+
+  .btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
+    background-color: #bd8b9c !important;
+    border-color: #bd8b9c !important;
+  }
+</style>
+
+<div class="row">
+    <br>
+  <div class="col-md-5 style-col ">
+    
+    <center><%= image_tag("logo.png", :alt => "CONVO logo", :class => "style_image")  %></center>
+    
+  </div>
+  <div class="col-md-7 style-column">
+    <h2 class="text-center">Log in</h2>
+    <hr>
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+    
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
+    
+      <div class="actions text-center">
+        <%= f.submit "Log in", class: "btn btn-success" %>
+      </div>
+    <% end %>
+    
+    <div class="text-center">
+      <br><%= render "devise/shared/links" %>  </br>
+    </div>
+    
+  </div>
+</div>

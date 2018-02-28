@@ -1,0 +1,49 @@
+<style>
+    .btn-success{
+        background-color: #db8b9c !important;
+        border-color: #db8b9c !important;
+    }
+
+    .btn a{
+        color: #ffffff !important;
+    }
+</style>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2> Create New Chat </h2>
+      <hr>
+
+      <%= form_with model: @chat, local: true do |form| %>
+      
+        <% if @chat.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@chat.errors.count, "error") %> prevented this chat from being saved:
+            </h2>
+            <ul>
+              <% @chat.errors.full_messages.each do |chat| %>
+                <li><%= chat %></li>
+              <% end %>
+            </ul>
+          </div>
+
+        <% end %>
+
+        <% @users.each do |user| %>
+          <% if user != current_user%>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <strong><%=user.name%></strong>
+                <button type="button" class="btn btn-success btn-sm">
+                  <%= link_to "Begin Convo", 
+                      chats_path(sender_id: current_user.id, recipient_id: user.id), 
+                      method: :post %>
+                  </button>
+              </div>
+            </div>
+          <%end%>
+        <% end %>
+      <%end%>
+  </div>
+</div>

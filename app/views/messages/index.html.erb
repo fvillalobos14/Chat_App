@@ -1,0 +1,14 @@
+<h1>Messages</h1>
+<hr>
+ <p><%= link_to 'Home', controller: 'chats' %></p>
+<table>
+  <tr>
+    <th>Content</th>
+  </tr>
+ 
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= message.text %></td>
+      </tr>
+  <% end %>
+</table>

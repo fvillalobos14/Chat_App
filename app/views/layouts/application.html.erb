@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Ramabhadra" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <style>
+    ::-webkit-scrollbar{
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background: #edcbd4;
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      width: 5px;
+      background: #f8f8f8;
+    }
+
+    body{
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+  </style>
+
+  <body>
+    <%= render 'partials/navbar'  %>
+   <!--  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->   <!-- ADD THIS LATER -->
+    <%= yield %>
+    
+  </body>
+</html>
