@@ -10,8 +10,13 @@ class ChatsController < ApplicationController
         @users = User.all
     end
 
-    def create 
-        @chat = Chat.create(chat_params)
+    def create
+        if Chat.between(params[:sender_id], params[:recipient_id]).present?
+            @chat = Chat.between(params[:sender_id], params[:recipient_id]).first
+        else
+            @chat = Chat.create(chat_params)
+        end
+
         # make sure to add conditions for when the chat already exists 
         redirect_to chats_path
     end

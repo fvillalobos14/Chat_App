@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
+  <style>
+    h2{
+      font-family: 'Ramabhadra', sans-serif;
+    }
+  </style>  
+
     <title>App</title>
     <%= csrf_meta_tags %>
     <link href="https://fonts.googleapis.com/css?family=Ramabhadra" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -32,8 +39,8 @@
 
   <body>
     <%= render 'partials/navbar'  %>
-   <!--  <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> -->   <!-- ADD THIS LATER -->
+    <%= render 'partials/messages'  %>
+    
     <%= yield %>
     
   </body>
